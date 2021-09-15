@@ -9,7 +9,7 @@ auto Detector::Detect(const cv::_InputArray &input_image) -> DetectionResult {
   cv::cuda::GpuMat const kImageGpu{input_image};
   std::vector<cv::Rect> detections{};
   histogram_oriented_gradient_->detectMultiScale(kImageGpu, detections);
-  return DetectionResult{detections.size()};
+  return DetectionResult{detections.size(), detections};
 
 }
 

@@ -24,6 +24,9 @@ auto Ui::ShowResult(cv::Mat &&image, DetectionResult const &results) -> void {
   auto text = std::string("Counted people:") + std::to_string(results.number_people_);
   cv::putText(image, text, cv::Point(kTextX, kTextY), cv::FONT_HERSHEY_DUPLEX, kFontScale, cv::Scalar(kWhite),
               kThickness, cv::LINE_AA);
+  for (const auto &rect: results.detected_rects_) {
+    cv::rectangle(image, rect, kWhite, kThickness );
+  }
   cv::imshow(window_name_, image);
 }
 
